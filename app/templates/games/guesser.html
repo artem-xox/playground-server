@@ -8,10 +8,22 @@
 
 <div class="jumbotron">
     <h5 class="display-4">Guesser</h5>
-    <p class="lead">You should guess the word that was guessed. Try to use simple words in the beginning.</p>
+    <p class="lead">You should guess the word that was guessed. 
+        The numbers next to the words show how close you are to the hidden word. <br>
+        Try to use simple words in the beginning, like an `animal`, `feeling`, 'machine', etc. 
+        I hope it won't be difficult, however you can see an answer at any time.
+        Enjoy.</p>
     
     <span class="badge badge-secondary">{{ context.model_name }}</span>
     <span class="badge badge-secondary">{{ context.words_count }} words</span>
+    <a class="badge badge-secondary" data-toggle="collapse" href="#answer" role="button" aria-expanded="false" aria-controls="collapseExample">
+        answer
+    </a>
+    <div class="collapse" id="answer">
+        <div class="card card-body">
+            It's a `{{ context.guessed_word }}`, you sucker :)
+        </div>
+    </div>
 </div>
 
 

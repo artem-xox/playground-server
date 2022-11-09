@@ -1,10 +1,13 @@
 words = [
-    'football', 'tennis', 'squash',
-    'summer', 'spring', 'winter', 
-    'dinner', 'lunch', 'soup',
+    'football', 'tennis', 'squash', 'basketball', 'dota', 'player'
+    'summer', 'spring', 'winter', 'autumn',
+    'dinner', 'lunch', 'soup', 'barbeque', 
+    'tomato', 'potato', 'carrot', 'onion', 'garlic',
     'love', 'hate', 'like',
-    'president', 'prisoner',
-    'car', 'plane', 'flight'
+    'girl', 'boy', 'mother', 'father', 'uncle',
+    'pirate', 'politician', 'president',
+    'car', 'taxi', 'plane', 'bus', 'helicopter',
+    'cat', 'dog', 'rat', 'mouse', 'horse', 'cow'
 ]
 
 gensim_models = [
@@ -22,4 +25,4 @@ gensim_models = [
     'glove-twitter-200'
 ]
 
-model_name = 'word2vec-google-news-300'
+model_name = 'glove-twitter-25'
