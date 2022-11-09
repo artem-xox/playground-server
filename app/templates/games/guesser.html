@@ -1,0 +1,71 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+    Guesser
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h5 class="display-4">Guesser</h5>
+    <p class="lead">You should guess the word that was guessed. Try to use simple words in the beginning.</p>
+    
+    <span class="badge badge-secondary">{{ context.model_name }}</span>
+    <span class="badge badge-secondary">{{ context.words_count }} words</span>
+</div>
+
+
+<form method="post" style="max-width: 600px; margin: auto;">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            {% if context.status == 'Finish' %}
+                <span class="input-group-text" style="min-width: 110px; color: green;" id="inputGroupFileAddon01"> 
+                    {{ context.status | safe }} 
+                </span>
+            {% elif context.status == 'Error' %}
+                <span class="input-group-text" style="min-width: 110px; color: red;" id="inputGroupFileAddon01"> 
+                    {{ context.status | safe }} 
+                </span>
+            {% elif context.status == 'Not found' %}
+                <span class="input-group-text" style="min-width: 110px; color: red;" id="inputGroupFileAddon01"> 
+                    {{ context.status | safe }}
+                </span>
+            {% else %}
+                <span class="input-group-text" style="min-width: 110px;" id="inputGroupFileAddon01"> 
+                    {{ context.status | safe }} 
+                </span>
+            {% endif %}
+          </div>
+        <input type="text" class="form-control" placeholder="Your word" aria-label="Your word" name="word">
+        <div class="input-group-append">
+            <input class="btn btn-outline-secondary" type="submit" value="Submit" name="Submit"/>
+        </div>
+        <div class="input-group-append">
+            <input class="btn btn-outline-secondary" type="submit" value="New game" name="New game"/>
+        </div>
+      </div>
+    
+    {% if context.words %}
+        {% for word in context.words %}
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: {{ word.score }}%;" aria-valuenow="{{ word.score }}" aria-valuemin="0" aria-valuemax="100">
+                    {{ word.score }}%
+                </div>
+            </div>
+            
+            {% if context.status == 'Finish' %}
+                <div class="alert alert-success" role="alert">
+                    {{ word.word }}
+                </div>
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                    {{ word.word }}
+                </div>
+            {% endif %}
+            
+        {% endfor %}
+    {% endif %}
+
+    </form>
+
+{% endblock %}
