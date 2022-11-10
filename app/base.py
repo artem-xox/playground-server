@@ -57,23 +57,6 @@ def guesser():
 
 @app.route("/games/gaps", methods=['GET', 'POST'])
 def gaps():
-    state = session.get("gaps_state")
-    
-    # if not state:
-    #     guesser_game.new()
-    # else:
-    #     guesser_game.state = state
-
-    # if request.method == 'GET':
-    #     return render_template("games/guesser.html", context=guesser_game._state)
-    # elif request.method == 'POST':
-    #     if request.form.get('Submit') == 'Submit':
-    #         guesser_game.step(request.form.get('word'))
-    #     elif request.form.get('New game') == 'New game':
-    #         guesser_game.new()
-    
-    #     session["guesser_state"] = guesser_game.state
-    
     return render_template("games/gaps.html", context=gaps_game._state)
 
 @app.route("/about")
@@ -83,3 +66,11 @@ def about():
 @app.route("/test")
 def test():
     return render_template("test/index.html")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('main/404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(e):
+    return render_template('main/500.html'), 500

@@ -10,8 +10,8 @@ from app.games.gaps.base import Equation, State, Status
 class GapsGame:
 
     equations: List = [
-        Equation(missed_word='a'), Equation(missed_word='b')
-        ]
+        Equation(['woman', 'king', 'man'], 'queen')
+    ]
     
     def __init__(self):
         self.state = State(
@@ -29,9 +29,18 @@ class GapsGame:
     
     def step(self, word: str, model: gensim.models.keyedvectors.KeyedVectors) -> None:
         try:
-            pass
+            word = Word(word)
+            word.check_word(model)
+        
+            if not word.is_known:
+                self.state.status = Status.NOT_FOUND
+                return
+            
+            if word.word.lower() == self.state.guessed_equantion.ans:
+                self.state.status = Status.FINISH
+            
         except Exception as error:
-            pass
+            self.state.status = Status.ERROR
         
     def _generate_equation(self) -> Equation:
         return random.choice(self.equations)

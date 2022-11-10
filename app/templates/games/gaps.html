@@ -7,69 +7,22 @@
 {% block banner %}
 <div class="jumbotron">
     <h5 class="display-4">Gaps</h5>
-    <p class="lead">You have to fill in the gaps in such a way that you get the correct equation. <br>
-        I hope it won't be difficult, however you can see an answer at any time.
-        Enjoy.</p>
+    <p class="lead">It's not working now. <br>
+        The idea was like `king - man + women` like
+        <a href="https://p.migdal.pl/2017/01/06/king-man-woman-queen-why.html">here</a> and 
+        <a href="https://blog.esciencecenter.nl/king-man-woman-king-9a7fd2935a85">here</a>.
+    </p>
     
-    <span class="badge badge-secondary">{{ context.model_name }}</span>
+    <!-- <span class="badge badge-secondary">{{ context.model_name }}</span>
     <span class="badge badge-secondary">{{ context.equations_count }} equations</span>
     <a class="badge badge-secondary" data-toggle="collapse" href="#answer" role="button" aria-expanded="false" aria-controls="collapseExample">
         answer
     </a>
     <div class="collapse" id="answer">
-        <div class="card card-body">
-            It's a `{{ context.guessed_equantion.missed_word }}`, you sucker :)
-        </div>
-    </div>
+        <div class="card card-body"></div>
+    </div> -->
 </div>
 {% endblock banner %}
 
 {% block content %}
-<form method="post" style="max-width: 600px; margin: auto;">
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            {% if context.status == 'Finish' %}
-                <span class="input-group-text" style="min-width: 110px; color: green;" id="inputGroupFileAddon01"> 
-                    {{ context.status | safe }} 
-                </span>
-            {% elif context.status == 'Error' %}
-                <span class="input-group-text" style="min-width: 110px; color: red;" id="inputGroupFileAddon01"> 
-                    {{ context.status | safe }} 
-                </span>
-            {% elif context.status == 'Not found' %}
-                <span class="input-group-text" style="min-width: 110px; color: red;" id="inputGroupFileAddon01"> 
-                    {{ context.status | safe }}
-                </span>
-            {% else %}
-                <span class="input-group-text" style="min-width: 110px;" id="inputGroupFileAddon01"> 
-                    {{ context.status | safe }} 
-                </span>
-            {% endif %}
-          </div>
-        <input type="text" class="form-control" placeholder="Your word" aria-label="Your word" name="word">
-        <div class="input-group-append">
-            <input class="btn btn-outline-secondary" type="submit" value="Submit" name="Submit"/>
-        </div>
-        <div class="input-group-append">
-            <input class="btn btn-outline-secondary" type="submit" value="New game" name="New game"/>
-        </div>
-      </div>
-    
-    {% if context.words %}
-        {% for word in context.words %}
-            {% if context.status == 'Finish' %}
-                <div class="alert alert-success" role="alert">
-                    {{ word.word }}
-                </div>
-            {% else %}
-                <div class="alert alert-info" role="alert">
-                    {{ word.word }}
-                </div>
-            {% endif %}
-            
-        {% endfor %}
-    {% endif %}
-
-    </form>
-
 {% endblock %}
