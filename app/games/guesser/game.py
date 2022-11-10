@@ -2,14 +2,14 @@ from typing import List
 import random
 from numpy import abs
 
-from app.games.guesser import constants
+from app.games.config import guesser_words, model_name
 from app.games.guesser.base import State, Status, Word
 
 
 class GuesserGame:
     
-    model_name: str = constants.model_name
-    words: List[str] = constants.words
+    model_name: str = model_name
+    words: List[str] = guesser_words
     
     def __init__(self, model):
         self.model = model

@@ -1,26 +1,24 @@
 {% extends "main/base.html" %}
 
 {% block title %}
-    Guesser
+    Gaps
 {% endblock %}
 
 {% block banner %}
 <div class="jumbotron">
-    <h5 class="display-4">Guesser</h5>
-    <p class="lead">You have to guess the word that was guessed. 
-        The numbers next to the words show how close you are to the hidden word. <br>
-        Try to use simple words in the beginning, like an `animal`, `feeling`, 'machine', etc. 
+    <h5 class="display-4">Gaps</h5>
+    <p class="lead">You have to fill in the gaps in such a way that you get the correct equation. <br>
         I hope it won't be difficult, however you can see an answer at any time.
         Enjoy.</p>
     
     <span class="badge badge-secondary">{{ context.model_name }}</span>
-    <span class="badge badge-secondary">{{ context.words_count }} words</span>
+    <span class="badge badge-secondary">{{ context.equations_count }} equations</span>
     <a class="badge badge-secondary" data-toggle="collapse" href="#answer" role="button" aria-expanded="false" aria-controls="collapseExample">
         answer
     </a>
     <div class="collapse" id="answer">
         <div class="card card-body">
-            It's a `{{ context.guessed_word }}`, you sucker :)
+            It's a `{{ context.guessed_equantion.missed_word }}`, you sucker :)
         </div>
     </div>
 </div>
@@ -59,12 +57,6 @@
     
     {% if context.words %}
         {% for word in context.words %}
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: {{ word.score }}%;" aria-valuenow="{{ word.score }}" aria-valuemin="0" aria-valuemax="100">
-                    {{ word.score }}%
-                </div>
-            </div>
-            
             {% if context.status == 'Finish' %}
                 <div class="alert alert-success" role="alert">
                     {{ word.word }}

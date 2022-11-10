@@ -1,4 +1,4 @@
-words = [
+guesser_words = [
     'football', 'tennis', 'squash', 'basketball', 'dota', 'player'
     'summer', 'spring', 'winter', 'autumn',
     'dinner', 'lunch', 'soup', 'barbeque', 
