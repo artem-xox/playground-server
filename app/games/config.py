@@ -25,4 +25,4 @@ gensim_models = [
     'glove-twitter-200'
 ]
 
-model_name = 'fasttext-wiki-news-subwords-300'
+model_name = 'word2vec-google-news-300'

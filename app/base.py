@@ -59,6 +59,10 @@ def guesser():
 def gaps():
     return render_template("games/gaps.html", context=gaps_game._state)
 
+@app.route("/services/vpn")
+def vpn():
+    return render_template("services/vpn.html", context={})
+
 @app.route("/about")
 def about():
     return render_template("about/index.html")
