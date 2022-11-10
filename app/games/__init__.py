@@ -9,7 +9,7 @@ def download_gensim_model(model_name: str):
     return api.load(model_name)
 
 
-model = download_gensim_model(model_name)
+gensim_model = download_gensim_model(model_name)
 
-gaps_game = GapsGame(model)
-guesser_game = GuesserGame(model)
+gaps_game = GapsGame()
+guesser_game = GuesserGame()

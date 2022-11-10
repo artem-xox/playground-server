@@ -1,6 +1,8 @@
 from typing import List
 import random
 
+import gensim
+
 from app.games.config import model_name
 from app.games.gaps.base import Equation, State, Status
 
@@ -11,7 +13,7 @@ class GapsGame:
         Equation(missed_word='a'), Equation(missed_word='b')
         ]
     
-    def __init__(self, model):
+    def __init__(self):
         self.state = State(
             guessed_equantion=self._generate_equation(),
             model_name=model_name,
@@ -25,7 +27,7 @@ class GapsGame:
             equations_count=len(self.equations)
         )
     
-    def step(self, word: str) -> None:
+    def step(self, word: str, model: gensim.models.keyedvectors.KeyedVectors) -> None:
         try:
             pass
         except Exception as error:

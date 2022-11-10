@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, session
 from flask_bootstrap import Bootstrap
 from flask_session import Session
 
-from app.games import gaps_game, guesser_game
+from app.games import gensim_model, gaps_game, guesser_game
 from app import settings
 
 from time import time
@@ -48,7 +48,7 @@ def guesser():
         return render_template("games/guesser.html", context=guesser_game._state)
     elif request.method == 'POST':
         if request.form.get('Submit') == 'Submit':
-            guesser_game.step(request.form.get('word'))
+            guesser_game.step(request.form.get('word'), gensim_model)
         elif request.form.get('New game') == 'New game':
             guesser_game.new()
     
