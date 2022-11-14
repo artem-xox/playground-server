@@ -3,11 +3,9 @@ PROD_PORT = 5000
 DEV_PORT = 5001
 IMAGE = playground-server
 
-
 # environment
 install:
 	poetry install
-
 
 # launch
 run:
@@ -16,10 +14,9 @@ run:
 debug:
 	flask --app app/base --debug run --port=${DEV_PORT}
 
-
 # docker
 docker-build:
-	docker built -t {IMAGE} .
+	docker build -t ${IMAGE} .
 
 docker-run: docker-build
-	docker run -t {IMAGE}
+	docker run --name ${IMAGE}-container --rm -p ${PROD_PORT}:${PROD_PORT} ${IMAGE}
