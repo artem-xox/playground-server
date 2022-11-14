@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, session
 from flask_bootstrap import Bootstrap
 from flask_session import Session
 
-from app.games import gensim_model, gaps_game, guesser_game
+from app.games import gensim_model, guesser_game
 from app import settings
 
 from time import time
@@ -25,16 +25,13 @@ app = create_app()
 
 
 @app.route("/")
+@app.route("/index")
 def index():
     return render_template("index.html")
 
 @app.route("/models")
 def models():
     return render_template("models/index.html")
-
-@app.route("/games")
-def games():
-    return render_template("games/index.html")
 
 @app.route("/games/guesser", methods=['GET', 'POST'])
 def guesser():
@@ -55,21 +52,21 @@ def guesser():
         session["guesser_state"] = guesser_game.state
         return render_template("games/guesser.html", context=guesser_game._state)
 
-@app.route("/games/gaps", methods=['GET', 'POST'])
+@app.route("/games/gaps")
 def gaps():
-    return render_template("games/gaps.html", context=gaps_game._state)
+    return render_template("games/gaps.html")
 
 @app.route("/services/vpn")
 def vpn():
     return render_template("services/vpn.html", context={})
 
+@app.route("/services/metaflow")
+def metaflow():
+    return render_template("services/metaflow.html", context={})
+
 @app.route("/about")
 def about():
-    return render_template("about/index.html")
-
-@app.route("/test")
-def test():
-    return render_template("test/index.html")
+    return render_template("main/about.html")
 
 @app.errorhandler(404)
 def page_not_found(e):
