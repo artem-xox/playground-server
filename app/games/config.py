@@ -25,5 +25,5 @@ gensim_models = [
     'glove-twitter-200'
 ]
 
-model_name = 'glove-twitter-25'
-# model_name = 'word2vec-google-news-300'
+# model_name = 'glove-twitter-25'
+model_name = 'word2vec-google-news-300'
