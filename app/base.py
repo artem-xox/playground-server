@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, session, send_from_directory
+from flask import Flask, request, render_template, send_file, send_from_directory, session
 from flask_bootstrap import Bootstrap
 from flask_session import Session
 
@@ -11,7 +11,7 @@ from time import time
 def create_app():
     app = Flask(__name__, template_folder=settings.TEMPLATE_DIR)
 
-    app.secret_key = 'super secret key'
+    app.secret_key = settings.SECRET_KEY
     app.config["SESSION_PERMANENT"] = False
     app.config["SESSION_TYPE"] = "filesystem"
 
@@ -70,7 +70,11 @@ def about():
 
 @app.route("/cv/actual")
 def cv_actual():
-    return send_from_directory(settings.FILES_DIR, settings.CV_FILENAME)
+    return send_from_directory(
+            settings.FILES_DIR, 
+            settings.CV_FILENAME,
+            mimetype='application/pdf'
+        )
 
 @app.errorhandler(404)
 def page_not_found(e):

@@ -2,6 +2,7 @@
 PROD_PORT = 5000
 DEV_PORT = 5001
 IMAGE = playground-server
+CONTAINER = ${IMAGE}-container
 
 # environment
 install:
@@ -18,5 +19,10 @@ debug:
 docker-build:
 	docker build -t ${IMAGE} .
 
-docker-run: docker-build
-	docker run --name ${IMAGE}-container --rm -p ${PROD_PORT}:${PROD_PORT} ${IMAGE}
+docker-up: docker-build
+	docker run --name ${CONTAINER} --rm -p ${PROD_PORT}:${PROD_PORT} ${IMAGE}
+
+docker-down:
+	docker kill ${CONTAINER}
+
+docker-reup: docker-down docker-up
