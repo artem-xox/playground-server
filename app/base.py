@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, session
+from flask import Flask, request, render_template, session, send_from_directory
 from flask_bootstrap import Bootstrap
 from flask_session import Session
 
@@ -67,6 +67,10 @@ def metaflow():
 @app.route("/about")
 def about():
     return render_template("main/about.html")
+
+@app.route("/cv/actual")
+def cv_actual():
+    return send_from_directory(settings.FILES_DIR, settings.CV_FILENAME)
 
 @app.errorhandler(404)
 def page_not_found(e):
